@@ -1,0 +1,33 @@
+{
+    "inputs": [
+        {
+            "type": "promptString",
+            "id": "existingInput",
+            "description": "Existing input"
+        },
+        {
+            "type": "promptString",
+            "id": "accessKey",
+            "description": "BrowserStack Access Key",
+            "password": true
+        }
+    ],
+    "servers": {
+        "playwright":{
+            "command": "npx",
+            "args": [
+                "@playwright/mcp@latest"
+            ]
+        },
+        "browserstack":{
+            "command": "npx",
+            "args": [
+                "@browserstack/mcp-server@latest"
+            ],
+            "env":{
+                "BROWSERSTACK_ACCESS_KEY": "${input:accessKey}",
+                "NODE_TLS_REJECT_UNAUTHORIZED": "0"
+            }
+        }
+    }
+}
